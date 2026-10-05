@@ -16,8 +16,8 @@ while (true)
     int choice;
     if (!Int32.TryParse(Console.ReadLine(), out choice))
     {
-    Console.WriteLine("\tFel! Välj motsvarande siffra!");
-    continue;
+        Console.WriteLine("\tFel! Välj motsvarande siffra!");
+        continue;
     }
 
     if (choice == 1)
@@ -25,15 +25,27 @@ while (true)
         Console.Write("Namn: ");
         string name = Console.ReadLine();
         Console.Write("Pris: ");
-        int price = int.Parse(Console.ReadLine());
+        int price;
+        if (!Int32.TryParse(Console.ReadLine(), out price))
+        {
+            Console.WriteLine("\tFel! Ange ett tal!");
+            continue;
+        }
         list.Add(new Item(name, price));
     }
     else if (choice == 2)
     {
         Console.Write("Nummer: ");
-        int number = int.Parse(Console.ReadLine());
+        int number;
+        if (!Int32.TryParse(Console.ReadLine(), out number))
+        {
+            Console.WriteLine("\tFel! Ange ett tal!");
+            continue;
+        }
+
         list.RemoveAt(number);
     }
+
     else if (choice == 3)
     {
         list.Save();
