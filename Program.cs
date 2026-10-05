@@ -13,7 +13,12 @@ while (true)
     Console.WriteLine("5. Avsluta");
     Console.Write("Välj: ");
 
-    int choice = int.Parse(Console.ReadLine());
+    int choice;
+    if (!Int32.TryParse(Console.ReadLine(), out choice))
+    {
+    Console.WriteLine("\tFel! Välj motsvarande siffra!");
+    continue;
+    }
 
     if (choice == 1)
     {
