@@ -1,4 +1,6 @@
 // Holds the items and takes care of loading and saving them.
+using System.Linq.Expressions;
+
 class ShoppingList
 {
     private List<Item> items = new List<Item>();
@@ -81,7 +83,17 @@ class ShoppingList
     // Reads the file back into the list.
     public void Load()
     {
-        string text = File.ReadAllText(path);
+        string text;
+        
+        try
+        {
+            text=File.ReadAllText(path);
+        }
+        catch (FileNotFoundException)
+        {
+            Console.WriteLine("Ingen sparad lista hittades. Startar med en tom lista.");
+            return;
+        }
         string[] lines = text.Split('\n');
 
         foreach (string line in lines)
