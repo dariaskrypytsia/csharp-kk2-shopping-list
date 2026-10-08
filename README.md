@@ -40,3 +40,33 @@ Jag valde `false` och inte ett undantag. Jag tycker att det är lättare. Det ä
 I `Program.cs` skriver jag `if (!list.Add(item))`. Om svaret är `false` skriver programmet ett meddelande. Sedan fortsätter programmet.
 
 `Item` är annorlunda. Där kastar jag ett undantag om namnet är tomt eller priset är negativt. En sådan vara ska aldrig finnas. `Program.cs` fångar undantaget och skriver ett meddelande.
+
+
+## Klassdiagram
+
+```mermaid
+classDiagram
+    class Item {
+        +string Name
+        +int Price
+        +Item(name, price)
+        +ToString() string
+    }
+    class ShoppingList {
+        -List~Item~ items
+        -string path
+        -int budget
+        +Add(item) bool
+        +RemoveAt(number) bool
+        +Total() int
+        +Find(name) Item
+        +Print()
+        +Save()
+        +Load()
+    }
+    class Program {
+        Meny och inmatning
+    }
+    ShoppingList --> Item : innehåller
+    Program --> ShoppingList : använder
+```
