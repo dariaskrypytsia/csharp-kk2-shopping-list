@@ -31,4 +31,12 @@
 - **Varför:** Programmet försökte läsa en fil som inte fanns. `parts[1]` finns inte om raden saknar `;`, och `int.Parse` kan inte göra om `abc` till ett tal.
 - **Lösning:** Jag använder `try` och `catch (FileNotFoundException)`, så programmet startar med en tom lista. Jag använder `if (parts.Length < 2)` för att kontrollera att raden har två delar. Jag använder `if (!int.TryParse(...))` för att kontrollera att priset är ett tal. Om en rad är fel skriver programmet ett meddelande och hoppar över raden med `continue`.
 
+## Designval
 
+När en vara blir för dyr för budgeten returnerar `Add` `false`. Om varan får plats lägger `Add` till den och returnerar `true`.
+
+Jag valde `false` och inte ett undantag. Jag tycker att det är lättare. Det är inget fel i programmet när budgeten tar slut. Det kan hända när man handlar. `Program.cs` behöver bara veta ja eller nej, och då räcker en `if`.
+
+I `Program.cs` skriver jag `if (!list.Add(item))`. Om svaret är `false` skriver programmet ett meddelande. Sedan fortsätter programmet.
+
+`Item` är annorlunda. Där kastar jag ett undantag om namnet är tomt eller priset är negativt. En sådan vara ska aldrig finnas. `Program.cs` fångar undantaget och skriver ett meddelande.
