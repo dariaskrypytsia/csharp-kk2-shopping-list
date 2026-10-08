@@ -119,7 +119,18 @@ class ShoppingList
                 continue;
             }
             string[] parts = line.Split(';');
-            items.Add(new Item(parts[1].Trim(), int.Parse(parts[0])));
+
+            if (parts.Length < 2)
+            {
+                Console.WriteLine($"Hoppade över felaktig rad: {line}");
+                continue;
+            }
+            if(!int.TryParse(parts[0], out int price))
+            {
+                Console.WriteLine($"Hoppade över felaktig rad: {line}");
+                continue;
+            }
+            items.Add(new Item(parts[1].Trim(), price));
 
         }
     }
