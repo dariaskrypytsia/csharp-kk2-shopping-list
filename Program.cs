@@ -53,7 +53,7 @@ while (true)
             Console.WriteLine("\tFel! Ange ett tal!");
             continue;
         }
-        if (list.RemoveAt(number))
+        if (!list.RemoveAt(number))
         {
             Console.WriteLine("\tFel! Det finns ingen vara med det numret.");
         }
