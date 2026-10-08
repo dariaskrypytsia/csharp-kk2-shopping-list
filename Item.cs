@@ -6,6 +6,15 @@ class Item
 
     public Item(string name, int price)
     {
+        if (string.IsNullOrWhiteSpace(name))
+        {
+            throw new ArgumentException("Varan måste ha ett namn.");
+        }
+
+        if (price < 0)
+        {
+            throw new ArgumentOutOfRangeException("price", "Priset får inte vara negativt.");
+        }
         Name = name;
         Price = price;
     }
