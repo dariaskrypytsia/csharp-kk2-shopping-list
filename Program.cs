@@ -31,7 +31,18 @@ while (true)
             Console.WriteLine("\tFel! Ange ett tal!");
             continue;
         }
-        list.Add(new Item(name, price));
+        try
+        {
+            Item item = new Item (name, price);
+            if (!list.Add(item))
+            {
+                Console.WriteLine("\tFel! Varan ryms inte inom budgeten.");
+            }
+        }
+        catch(ArgumentException ex)
+        {
+            Console.WriteLine($"\tFel! {ex.Message}");
+        }
     }
     else if (choice == 2)
     {
